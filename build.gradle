@@ -1,0 +1,107 @@
+plugins {
+    id 'java'
+    id "xyz.wagyourtail.unimined" version "1.1.0-SNAPSHOT" apply false
+}
+
+// Edit in gradle.properties
+group = project_group
+version = "${version_major}.${version_minor}.${version_patch}"
+
+subprojects {
+    apply plugin: "xyz.wagyourtail.unimined"
+    apply plugin: "java"
+
+    group = rootProject.group
+    version = rootProject.version
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    // Add your maven repositories here
+    repositories {
+        mavenCentral()
+
+        // First Dark Dev Maven. Can be removed
+        maven {
+            url "https://maven.firstdark.dev/releases"
+        }
+
+        // First Dark Dev Mirror maven. Do not remove.
+        // It's required by this project to pull in dependencies for the modloaders
+        maven {
+            url "https://mcentral.firstdark.dev/releases"
+        }
+    }
+
+    dependencies {
+        // Add global dependencies here
+        // Dependencies added here will be applied to every module (Common/Fabric/Forge/NeoForge etc)
+    }
+
+    jar {
+        manifest {
+            attributes([
+                    'Specification-Title'     : project.archivesBaseName,
+                    'Specification-Vendor'    : mod_author,
+                    'Specification-Version'   : project.version,
+                    'Implementation-Title'    : project.name,
+                    'Implementation-Version'  : project.version,
+                    'Implementation-Vendor'   : mod_author,
+                    'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    'Timestamp'               : System.currentTimeMillis(),
+                    'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
+                    'Built-On-Minecraft'      : minecraft_version
+            ])
+        }
+    }
+
+    /**
+     * ===============================================================================
+     * =       DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING        =
+     * ===============================================================================
+     */
+
+    unimined.minecraft(sourceSets.main, true) {
+        version minecraft_version
+
+        mappings {
+            mojmap()
+            devNamespace "mojmap"
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.encoding = 'UTF-8'
+        it.options.release = 17
+    }
+
+    tasks.withType(GenerateModuleMetadata) {
+        enabled = false
+    }
+
+    clean {
+        delete "$rootDir/artifacts"
+    }
+
+    if (project.name !== 'Common') {
+        tasks.register('delDevJar') {
+            doLast {
+                def tree = fileTree('build/libs')
+                tree.include '**/*-dev-shadow.jar'
+                tree.include '**/*-dev.jar'
+                tree.include '**/*-all.jar'
+                tree.include '**/*-slim.jar'
+                tree.each { it.delete() }
+            }
+        }
+        build.finalizedBy delDevJar
+
+        tasks.register('copyAllArtifacts', Copy) {
+            from "$buildDir/libs"
+            into "$rootDir/artifacts"
+            include("*.jar")
+        }
+
+        build.finalizedBy(copyAllArtifacts)
+    }
+}

@@ -1,0 +1,27 @@
+archivesBaseName = "ExampleMod-Common-${minecraft_version}"
+
+dependencies {
+    // Add your dependencies here
+}
+
+/**
+ * ===============================================================================
+ * =       DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING        =
+ * ===============================================================================
+ */
+
+unimined.minecraft {
+    fabric {
+        loader fabric_loader
+    }
+
+    defaultRemapJar = false
+}
+
+processResources {
+    def buildProps = project.properties.clone()
+
+    filesMatching(['pack.mcmeta']) {
+        expand buildProps
+    }
+}

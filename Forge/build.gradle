@@ -1,0 +1,36 @@
+archivesBaseName = "ExampleMod-Forge-${minecraft_version}"
+
+dependencies {
+    // Add your dependencies here
+
+    // Do not edit or remove
+    implementation project(":Common")
+}
+
+/**
+ * ===============================================================================
+ * =       DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING        =
+ * ===============================================================================
+ */
+
+unimined.minecraft {
+    minecraftForge {
+        loader forge_version
+        mixinConfig("${mod_id}.mixins.json", "${mod_id}-forge.mixins.json")
+    }
+}
+
+processResources {
+    from project(":Common").sourceSets.main.resources
+    def buildProps = project.properties.clone()
+
+    filesMatching("META-INF/mods.toml") {
+        expand buildProps
+    }
+}
+
+compileTestJava.enabled = false
+
+tasks.withType(JavaCompile).configureEach {
+    source(project(":Common").sourceSets.main.allSource)
+}
