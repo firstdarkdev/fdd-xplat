@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "${mod_name}",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "ExampleAuthor"
+    "${mod_author}"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
