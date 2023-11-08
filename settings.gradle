@@ -15,5 +15,5 @@ pluginManagement {
 rootProject.name = 'fdd-xplat'
 include 'Common'
 include 'Fabric'
-include 'Forge'
+include 'NeoForge'
 

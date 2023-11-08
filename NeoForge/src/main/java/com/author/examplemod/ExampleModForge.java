@@ -1,16 +1,17 @@
 package com.author.examplemod;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @Mod(ModConstants.MOD_ID)
 public class ExampleModForge {
 
-    public ExampleModForge() {
+    public ExampleModForge(IEventBus modEventBus) {
         ModConstants.LOGGER.info("Hello Forge!");
         ExampleModCommon.initialize();
-        MinecraftForge.EVENT_BUS.addListener(this::onItemTooltip);
+        NeoForge.EVENT_BUS.addListener(this::onItemTooltip);
     }
 
     private void onItemTooltip(ItemTooltipEvent event) {

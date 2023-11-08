@@ -1,5 +1,5 @@
 // Adjust the output jar name here
-archivesBaseName = "${mod_name}-Forge-${minecraft_version}"
+archivesBaseName = "${mod_name}-NeoForge-${minecraft_version}"
 
 dependencies {
     // Add your dependencies here
@@ -31,9 +31,12 @@ publishing {
  */
 
 unimined.minecraft {
-    minecraftForge {
-        loader forge_version
-        mixinConfig("${mod_id}.mixins.json", "${mod_id}-forge.mixins.json")
+    neoForged {
+        loader neoforge_version
+        mixinConfig("${mod_id}.mixins.json", "${mod_id}-neoforge.mixins.json")
+
+        // TODO Remove when NeoGradle is fixed
+        forgeTransformer.binpatchFile = rootProject.projectDir.toPath().resolve("output.lzma")
     }
 }
 

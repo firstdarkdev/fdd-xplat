@@ -1,8 +1,8 @@
 package com.author.examplemod.services;
 
 import com.author.examplemod.platform.IPlatformHelper;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.FMLLoader;
 
 public class ForgePlatformHelper implements IPlatformHelper {
 
