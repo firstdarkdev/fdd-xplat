@@ -10,6 +10,7 @@ version = "${version_major}.${version_minor}.${version_patch}"
 subprojects {
     apply plugin: "xyz.wagyourtail.unimined"
     apply plugin: "java"
+    apply plugin: 'maven-publish'
 
     group = rootProject.group
     version = rootProject.version

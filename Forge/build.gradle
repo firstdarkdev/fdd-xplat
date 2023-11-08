@@ -1,10 +1,27 @@
-archivesBaseName = "ExampleMod-Forge-${minecraft_version}"
+// Adjust the output jar name here
+archivesBaseName = "${mod_name}-Forge-${minecraft_version}"
 
 dependencies {
     // Add your dependencies here
 
     // Do not edit or remove
     implementation project(":Common")
+}
+
+// Maven Publishing. Remove if not needed
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId base.archivesName.get()
+            from components.java
+        }
+    }
+    repositories {
+        // Add your maven repository here
+        maven {
+            url "file://" + System.getenv("local_maven")
+        }
+    }
 }
 
 /**
