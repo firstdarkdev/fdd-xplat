@@ -35,13 +35,9 @@ This project is powered by [Unimined](https://github.com/unimined/unimined), and
    1) `loaderVersion` -> The forge version code
    2) `license` -> Your mod license
    3) `issueTrackerURL` -> Your GitHub repository of the mod
-   4) `modId` -> Your modid. Make sure to match this with `mod_id` from `gradle.properties`
-   5) `displayName` -> The name of your mod
    6) `displayURL` -> Your Modrinth/Curseforge/GitHub page of the mod
    7) `logoFile` -> Your mod icon
-   8) `authors` -> Your name
    9) `description` -> Your mod description
-   10) `dependencies.examplemod` -> `dependencies.yourmodid`
    11) `versionRange` -> `[forgeVersionCode,)` and `[1.20.2,)` (Replace with the minecraft versions your mod supports) 
 
 6) If your default JVM/JDK is not Java 17 you will encounter an error when opening the project. This error is fixed by going to File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVMand changing the value to a valid Java 17 JVM. You will also need to set the Project SDK to Java 17. This can be done by going to File > Project Structure > Project SDK. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
