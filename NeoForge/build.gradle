@@ -34,9 +34,6 @@ unimined.minecraft {
     neoForged {
         loader neoforge_version
         mixinConfig("${mod_id}.mixins.json", "${mod_id}-neoforge.mixins.json")
-
-        // TODO Remove when NeoGradle is fixed
-        forgeTransformer.binpatchFile = rootProject.projectDir.toPath().resolve("output.lzma")
     }
 }
 
