@@ -40,7 +40,7 @@ This project is powered by [Unimined](https://github.com/unimined/unimined), and
    9) `description` -> Your mod description
    11) `versionRange` -> `[neoforgeVersionCode,)` and `[1.20.2,)` (Replace with the minecraft versions your mod supports) 
 
-6) If your default JVM/JDK is not Java 17 you will encounter an error when opening the project. This error is fixed by going to File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVMand changing the value to a valid Java 17 JVM. You will also need to set the Project SDK to Java 17. This can be done by going to File > Project Structure > Project SDK. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
+6) If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by going to File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM and changing the value to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going to File > Project Structure > Project SDK. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
 7) Replace the contents of `LICENSE` with your mod license
 8) Replace the contents of `readme.md` with your mod readme
 
