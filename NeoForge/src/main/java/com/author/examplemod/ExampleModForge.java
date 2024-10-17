@@ -15,6 +15,6 @@ public class ExampleModForge {
     }
 
     private void onItemTooltip(ItemTooltipEvent event) {
-        ExampleModCommon.onItemTooltip(event.getItemStack(), event.getFlags(), event.getToolTip());
+        ExampleModCommon.onItemTooltip(event.getItemStack(), event.getContext(), event.getFlags(), event.getToolTip());
     }
 }
