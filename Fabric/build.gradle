@@ -1,5 +1,7 @@
 // Adjust the output jar name here
-archivesBaseName = "${mod_name}-Fabric-${minecraft_version}"
+base {
+    archivesName = "${mod_name}-Fabric-${minecraft_version}"
+}
 
 dependencies {
     // Add your own dependencies here
